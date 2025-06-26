@@ -2,6 +2,8 @@ import React from "react";
 import "./Pages.css";
 
 export default function Contact() {
+    const baseUrl = process.env.REACT_APP_API_BASE_URL
+
     const handleSubmit = async (e) => {
       e.preventDefault();
 
@@ -13,7 +15,7 @@ export default function Contact() {
       };
 
       try {
-        const response = await fetch("http://localhost:5001/api/contact", {
+        const response = await fetch(`${baseUrl}/api/contact`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

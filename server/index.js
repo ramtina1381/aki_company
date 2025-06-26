@@ -4,15 +4,20 @@ require("dotenv").config();
 
 const app = express();
 const PORT = 5001;
-
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://aki-company.vercel.app/", // Replace with actual domain
+];
 // Middleware to parse JSON bodies
 app.use(express.json());
 
 // Manual CORS middleware - handles all requests
 app.use((req, res, next) => {
+    const origin = req.headers.origin;
   // Allow your React app's origin
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-  
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }  
   // Allow specific headers
   res.header(
     "Access-Control-Allow-Headers",

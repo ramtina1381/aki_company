@@ -2,6 +2,8 @@ import React from "react";
 import "./Pages.css";
 
 export default function Partnership() {
+  const baseUrl = process.env.REACT_APP_API_BASE_URL
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = {
@@ -19,7 +21,7 @@ export default function Partnership() {
     };
 
     try {
-      const response = await fetch("http://localhost:5001/api/partnership", {
+      const response = await fetch(`${baseUrl}/api/partnership`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
