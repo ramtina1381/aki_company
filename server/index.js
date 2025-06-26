@@ -6,7 +6,10 @@ const app = express();
 const PORT = 5001;
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://aki-company.vercel.app" // Replace with actual domain
+  "https://aki-company.vercel.app",
+  "https://aki-company-nnvv.vercel.app", // Add your backend domain too
+  "https://aki-company-git-main-akibzaman.vercel.app", // Common Vercel preview URL pattern
+  "https://aki-company-*.vercel.app"// Replace with actual domain
 ];
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -41,15 +44,7 @@ const cors = require("cors");
 
 
 const corsOptions = {
-  origin: function (origin, callback) {
-    // Allow requests with no origin (like Postman or curl)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    } else {
-      return callback(new Error("Not allowed by CORS"));
-    }
-  },
+  origin: allowedOrigins,
   methods: ["GET", "POST", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
