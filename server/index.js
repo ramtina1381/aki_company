@@ -6,7 +6,7 @@ const app = express();
 const PORT = 5001;
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://aki-company.vercel.app/", // Replace with actual domain
+  "https://aki-company.vercel.app" // Replace with actual domain
 ];
 // Middleware to parse JSON bodies
 app.use(express.json());
