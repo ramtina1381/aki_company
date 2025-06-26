@@ -10,33 +10,52 @@ const allowedOrigins = [
 ];
 // Middleware to parse JSON bodies
 app.use(express.json());
+const cors = require("cors");
 
 // Manual CORS middleware - handles all requests
-app.use((req, res, next) => {
-    const origin = req.headers.origin;
-  // Allow your React app's origin
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }  
-  // Allow specific headers
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
+// app.use((req, res, next) => {
+//     const origin = req.headers.origin;
+//   // Allow your React app's origin
+//   if (allowedOrigins.includes(origin)) {
+//     res.setHeader("Access-Control-Allow-Origin", origin);
+//   }  
+//   // Allow specific headers
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
   
-  // Allow these methods
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+//   // Allow these methods
+//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   
-  // Allow credentials if needed
-  res.header("Access-Control-Allow-Credentials", "true");
+//   // Allow credentials if needed
+//   res.header("Access-Control-Allow-Credentials", "true");
   
-  // Handle preflight requests (OPTIONS)
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
+//   // Handle preflight requests (OPTIONS)
+//   if (req.method === "OPTIONS") {
+//     return res.sendStatus(200);
+//   }
   
-  next();
-});
+//   next();
+// });
+
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like Postman or curl)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 // Test endpoint to verify server is working
 app.get("/api/health", (req, res) => {
