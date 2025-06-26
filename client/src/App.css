@@ -1,0 +1,28 @@
+/* Reset margin/padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #3B3838;
+}
+
+body {
+  background-color: #f7f7f7; /* Move background color to body only */
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: transparent; /* Ensure container doesn't have bg color */
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding-top: 0;
+  background-color: transparent; /* Ensure content area doesn't have bg color */
+}

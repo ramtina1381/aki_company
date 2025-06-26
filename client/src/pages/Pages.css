@@ -1,0 +1,603 @@
+:root {
+  --primary: #33A18F;
+  --primary-dark: #2A8C7D;
+  --accent: #A6645D;
+  --dark: #496D89;
+  --text: #3B3838;
+  --light-bg: #F8F9FA;
+}
+
+/* Base Styles */
+.home-container {
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+  max-width: auto;
+}
+
+/* Hero Section Styling */
+.hero {
+  position: relative;
+  width: 100vw; /* Full viewport width */
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  margin-left: calc(-50vw + 50%);
+}
+
+.hero-background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent dark overlay */
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-shadow: #33A18F
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Remove any default background colors */
+.home-container, .hero {
+  background: none !important;
+}
+
+/* Rest of your existing styles... */
+
+
+/* Value Propositions */
+.value-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+
+.value-card {
+  padding: 2rem;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.value-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Metrics Section */
+.metrics-section {
+  background: var(--light-bg);
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 2rem auto;
+}
+
+.metric-item {
+  background: var(--primary);
+  color: white;
+  padding: 2rem 1.5rem;
+  border-radius: 8px;
+}
+
+.metric-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.footnote {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  max-width: 800px;
+  margin: 2rem auto 0;
+}
+
+/* Process Section */
+.process-section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.process-steps {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+  gap: 1.5rem;
+}
+
+.step {
+  flex: 1;
+  min-width: 250px;
+  padding: 0 1rem;
+}
+
+.step-number {
+  width: 50px;
+  height: 50px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  margin: 0 auto 1rem;
+}
+
+.step-arrow {
+  width: 40px;
+  height: 2px;
+  background: var(--primary);
+  margin-top: 25px;
+  position: relative;
+}
+
+.step-arrow::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--primary);
+  border-top: 2px solid var(--primary);
+  rotate: 45deg;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    padding: 4rem 1.5rem;
+  }
+  
+  .process-steps {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .step-arrow {
+    width: 2px;
+    height: 40px;
+    margin: 0;
+  }
+  
+  .step-arrow::after {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    rotate: 135deg;
+  }
+}
+
+
+
+/* About Page Styling */
+
+/* Shared Hero Styles */
+.centered-heading-container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.centered-heading-container h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: #33A18F; /* Or your preferred text color */
+  margin: 0 auto;
+  position: relative;
+  line-height: 1.2;
+}
+
+
+
+/* Section Styling */
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #33A18F;
+  margin: 1rem auto;
+}
+
+/* Mission Section */
+.mission-content {
+  display: grid;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.mission-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+}
+/* Team Section */
+.team-section {
+  background-color: #f7f9f8;
+  padding: 60px 20px;
+  color: #3B3838;
+}
+
+.team-subtitle {
+  font-size: 24px;
+  color: #496D89;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.team-member-card {
+  background-color: white;
+  border: 1px solid #798F86;
+  border-radius: 16px;
+  padding: 20px;
+  width: 290px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.team-photo {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.team-member-card h4 {
+  font-size: 18px;
+  color: #33A18F;
+  margin-bottom: 5px;
+}
+
+.team-member-card p {
+  color: #3B3838;
+  font-size: 15px;
+}
+
+
+/* Process Section */
+.process-section {
+  background: #f9f9f9;
+}
+
+.process-section.dark-bg {
+  background: #333;
+  color: white;
+}
+
+.process-section .section-title {
+  color: inherit;
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin-top: 3rem;
+}
+
+.process-step {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.dark-bg .process-step {
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.step-number {
+  background: #33A18F;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Values Section */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.value-card {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
+}
+
+.value-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .about-hero {
+    height: 50vh;
+  }
+  
+  .section-container {
+    padding: 3rem 1rem;
+  }
+}
+
+
+/* -------------------- Contact Page Styling  ----------------------- */
+
+/* Contact Section */
+.contact-section {
+  background: #f9f9f9;
+  padding: 4rem 2rem;
+}
+
+.contact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+}
+
+.contact-info {
+  padding: 2rem;
+}
+
+.contact-info h1 {
+  color: #496D89;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-details {
+  margin-top: 2rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  color: #3B3838;
+}
+
+.contact-icon {
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+
+/* -------------------------------- Contact Form ---------------------------------- */
+.contact-form {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.contact-form h2 {
+  color: #496D89;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #3B3838;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #496D89;
+}
+
+.submit-btn {
+  background: #A6645D;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: 100%;
+}
+
+.submit-btn:hover {
+  background: #945852;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-info {
+    padding: 1rem 0;
+  }
+  
+  .contact-form {
+    padding: 1.5rem;
+  }
+}
+
+
+/* ---------------------------- Partnership CSS -------------------------- */
+.partnership-section {
+  background-color: #f7f9f8;
+  padding: 40px;
+  font-family: Arial, sans-serif;
+  color: #3B3838;
+}
+
+.form-container {
+  max-width: 700px;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid #798F86;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+h1 {
+  color: #33A18F;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #3B3838;
+  margin-bottom: 20px;
+}
+
+.partnership-form .form-group {
+  margin-bottom: 15px;
+}
+
+.partnership-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.partnership-form input,
+.partnership-form select,
+.partnership-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #798F86;
+  border-radius: 5px;
+  background-color: #f0f5f3;
+  color: #3B3838;
+}
+
+.partnership-form input:focus,
+.partnership-form textarea:focus,
+.partnership-form select:focus {
+  outline: none;
+  border-color: #33A18F;
+}
+
+button[type="submit"] {
+  background-color: #A6645D;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #496D89;
+}
