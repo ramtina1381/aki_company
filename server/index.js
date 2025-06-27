@@ -124,8 +124,7 @@ Message: ${message}
     to: process.env.EMAIL_USER,
     subject: `AKI Partnership Inquiry: ${organization}`,
     text: formattedMessage,
-    replyTo: email,
-    html: `...` // Add your HTML version here
+    replyTo: email
   };
 
 // const mailOptions = {
@@ -143,6 +142,14 @@ Message: ${message}
   //   console.error("Email send error:", err);
   //   res.status(500).json({ message: "Failed to submit form." });
   // }
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.sendgrid.net',
+      port: 587,
+      auth: {
+        user: 'apikey',
+        pass: process.env.SENDGRID_API_KEY
+      }
+    });
 
     try {
     await transporter.sendMail(mailOptions);
