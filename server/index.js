@@ -120,8 +120,8 @@ Message: ${message}
 // });
 
   const mailOptions = {
-    from: process.env.SENDER_EMAIL || 'noreply@yourdomain.com',
-    to: process.env.RECEIVING_EMAIL,
+    from: process.env.EMAIL_USER || 'noreply@yourdomain.com',
+    to: process.env.EMAIL_USER,
     subject: `AKI Partnership Inquiry: ${organization}`,
     text: formattedMessage,
     replyTo: email,
