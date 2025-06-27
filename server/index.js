@@ -73,13 +73,15 @@ app.post("/api/contact", async (req, res) => {
   }
 
   // Email configuration
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
+const transporter = nodemailer.createTransport({
+  host: 'smtp.sendgrid.net',
+  port: 587,
+  auth: {
+    user: 'apikey',
+    pass: process.env.SENDGRID_API_KEY
+  }
+});
+
 
   const mailOptions = {
     from: process.env.EMAIL_USER, // Use your email as sender
@@ -145,13 +147,13 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-  const mailOptions = {
-    from: email,
-    to: process.env.EMAIL_USER,
-    subject: `AKI Partnership Inquiry: ${organization}`,
-    text: formattedMessage,
-    replyTo: email
-  };
+const mailOptions = {
+  from: process.env.EMAIL_USER,   
+  to: process.env.EMAIL_USER,       
+  subject: `AKI Partnership Inquiry: ${organization}`,
+  text: formattedMessage,
+  replyTo: email                   
+};
 
   try {
     await transporter.sendMail(mailOptions);
