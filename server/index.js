@@ -15,34 +15,6 @@ const allowedOrigins = [
 app.use(express.json());
 const cors = require("cors");
 
-// Manual CORS middleware - handles all requests
-// app.use((req, res, next) => {
-//     const origin = req.headers.origin;
-//   // Allow your React app's origin
-//   if (allowedOrigins.includes(origin)) {
-//     res.setHeader("Access-Control-Allow-Origin", origin);
-//   }  
-//   // Allow specific headers
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-  
-//   // Allow these methods
-//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  
-//   // Allow credentials if needed
-//   res.header("Access-Control-Allow-Credentials", "true");
-  
-//   // Handle preflight requests (OPTIONS)
-//   if (req.method === "OPTIONS") {
-//     return res.sendStatus(200);
-//   }
-  
-//   next();
-// });
-
-
 const corsOptions = {
   origin: allowedOrigins,
   methods: ["GET", "POST", "OPTIONS"],
@@ -138,29 +110,57 @@ Sustainability Goals: ${goals}
 Message: ${message}
 `;
 
-const transporter = nodemailer.createTransport({
-  host: 'smtp.sendgrid.net',
-  port: 587,
-  auth: {
-    user: 'apikey', // Literally this string
-    pass: process.env.SENDGRID_API_KEY
-  }
-});
+// const transporter = nodemailer.createTransport({
+//   host: 'smtp.sendgrid.net',
+//   port: 587,
+//   auth: {
+//     user: 'apikey', // Literally this string
+//     pass: process.env.SENDGRID_API_KEY
+//   }
+// });
 
-const mailOptions = {
-  from: process.env.EMAIL_USER,   
-  to: process.env.EMAIL_USER,       
-  subject: `AKI Partnership Inquiry: ${organization}`,
-  text: formattedMessage,
-  replyTo: email                   
-};
+  const mailOptions = {
+    from: process.env.SENDER_EMAIL || 'noreply@yourdomain.com',
+    to: process.env.RECEIVING_EMAIL,
+    subject: `AKI Partnership Inquiry: ${organization}`,
+    text: formattedMessage,
+    replyTo: email,
+    html: `...` // Add your HTML version here
+  };
 
-  try {
+// const mailOptions = {
+//   from: process.env.EMAIL_USER,   
+//   to: process.env.EMAIL_USER,       
+//   subject: `AKI Partnership Inquiry: ${organization}`,
+//   text: formattedMessage,
+//   replyTo: email                   
+// };
+
+  // try {
+  //   await transporter.sendMail(mailOptions);
+  //   res.status(200).json({ message: "Partnership form submitted successfully!" });
+  // } catch (err) {
+  //   console.error("Email send error:", err);
+  //   res.status(500).json({ message: "Failed to submit form." });
+  // }
+
+    try {
     await transporter.sendMail(mailOptions);
+    console.log("Partnership email sent to:", mailOptions.to);
     res.status(200).json({ message: "Partnership form submitted successfully!" });
   } catch (err) {
-    console.error("Email send error:", err);
-    res.status(500).json({ message: "Failed to submit form." });
+    console.error("Email send failed:", {
+      error: err.message,
+      mailOptions: {
+        from: mailOptions.from,
+        to: mailOptions.to,
+        subject: mailOptions.subject
+      }
+    });
+    res.status(500).json({ 
+      message: "Failed to submit form",
+      error: process.env.NODE_ENV === 'development' ? err.message : undefined
+    });
   }
 });
 
