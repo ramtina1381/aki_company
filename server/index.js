@@ -137,13 +137,11 @@ Message: ${message}
 `;
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.sendgrid.net',
+  port: 587,
   auth: {
-    type: 'OAuth2',
-    user: process.env.EMAIL_USER,
-    clientId: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    refreshToken: process.env.REFRESH_TOKEN
+    user: 'apikey', // Literally this string
+    pass: process.env.SENDGRID_API_KEY
   }
 });
 
