@@ -124,7 +124,22 @@ Message: ${message}
     to: process.env.EMAIL_USER,
     subject: `AKI Partnership Inquiry: ${organization}`,
     text: formattedMessage,
-    replyTo: email
+    replyTo: email,
+    html: `
+      <h3>New Contact Form Submission</h3>
+      <p><strong>Name:</strong> ${fullName}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
+      <p><strong>Organization:</strong> ${organization}</p>
+      <p><strong>Industry:</strong> ${industry}</p>
+      <p><strong>Website:</strong> ${website}</p>
+      <p><strong>Address:</strong> ${address}</p>
+      <p><strong>Partnership Type:</strong> ${partnershipType}</p>
+      <p><strong>Battery Volume:</strong> ${volume}</p>
+      <p><strong>Sustainability Goals:</strong> ${goals}</p>
+      <p><strong>Message:</strong> ${message}</p>
+      <p>${message.replace(/\n/g, '<br>')}</p>
+    `
   };
 
 // const mailOptions = {
