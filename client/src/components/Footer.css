@@ -2,7 +2,7 @@
   background-color: #798F86;
   color: #3B3838;
   padding: 2rem 0 0; /* Reduced from 60px */
-  width: 100%;
+  width: 100vw;
   font-size: 0.9rem; /* Slightly smaller text */
 }
 
@@ -13,12 +13,21 @@
   margin: 0 auto;
   padding: 0 1rem;
   gap: 1rem; /* Better spacing control */
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: 2rem 5%;
+  box-sizing: border-box;
 }
 
 .footer-section, .footer-contact {
   flex: 1;
   min-width: 150px; /* Prevent squeezing */
   margin-bottom: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
 }
 
 .footer-section h4, .footer-contact h4 {
@@ -60,4 +69,23 @@
   border-top: 1px solid rgba(59, 56, 56, 0.2);
   margin-top: 1rem;
   font-size: 0.8rem;
+}
+@media (max-width: 768px) {
+  .footer {
+    padding: 1.5rem 5%;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .footer-logo {
+    order: -1; /* Move logo to top */
+    margin-bottom: 1.5rem;
+  }
+  
+  .footer-section {
+    margin-bottom: 1rem;
+  }
 }

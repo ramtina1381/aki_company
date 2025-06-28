@@ -12,6 +12,9 @@ body {
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  position: relative;
 }
 
 /* Responsive Typography */
@@ -33,7 +36,12 @@ button[type="submit"] {
   padding: clamp(0.8rem, 1.5vw, 1.2rem) clamp(1.5rem, 3vw, 2rem);
   font-size: clamp(0.9rem, 1.2vw, 1rem);
 }
-
+/* Remove any accidental horizontal padding/margins */
+.container, .footer-container, .section {
+  max-width: 100vw;
+  padding-right: 0;
+  margin-right: 0;
+}
 /* Mobile-First Media Queries */
 @media (max-width: 768px) {
   /* Stack grid items on mobile */
