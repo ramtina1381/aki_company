@@ -2,7 +2,17 @@ import React from "react";
 import "./Pages.css";
 
 export default function Partnership() {
-  const baseUrl = process.env.REACT_APP_API_BASE_URL
+  const baseUrl = process.env.REACT_APP_API_BASE_URL;
+
+  const showModal = () => {
+    const modal = document.getElementById("thankYouModal");
+    if (modal) modal.style.display = "flex";
+  };
+
+  const closeModal = () => {
+    const modal = document.getElementById("thankYouModal");
+    if (modal) modal.style.display = "none";
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +40,7 @@ export default function Partnership() {
       });
 
       if (response.ok) {
-        alert("Thank you! We'll be in touch regarding your partnership request.");
+        showModal();
         e.target.reset();
       } else {
         alert("Submission failed. Please try again.");
@@ -45,8 +55,11 @@ export default function Partnership() {
     <section className="partnership-section">
       <div className="form-container">
         <h1>Partner with AKI Battery Recycling</h1>
-        <p>We're always open to collaborating with organizations that share our commitment to sustainability.</p>
-        
+        <p>
+          We're always open to collaborating with organizations that share our
+          commitment to sustainability.
+        </p>
+
         <form onSubmit={handleSubmit} className="partnership-form">
           <div className="form-group">
             <label>Full Name*</label>
@@ -122,6 +135,29 @@ export default function Partnership() {
 
           <button type="submit">Submit Partnership Request</button>
         </form>
+      </div>
+
+      {/* Custom Modal */}
+      <div
+        className="modal-overlay"
+        id="thankYouModal"
+        style={{ display: "none" }}
+        onClick={(e) => {
+          if (e.target.id === "thankYouModal") closeModal();
+        }}
+      >
+        <div className="modal-box">
+          <button className="modal-close" onClick={closeModal}>
+            &times;
+          </button>
+          <h2>Thank You!</h2>
+          <div className="modal-content">
+            <p>
+              We appreciate your interest in partnering with AKI Battery
+              Recycling. We'll reach out to you shortly.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
