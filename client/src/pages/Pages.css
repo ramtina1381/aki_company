@@ -129,14 +129,14 @@ button:focus-visible {
 .hero {
   position: relative;
   height: clamp(400px, 60vh, 800px);
-  width: 100vw; /* Full viewport width */
+  width: 100%;
+  margin-left: 0;  
   height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   text-align: center;
-  margin-left: calc(-50vw + 50%);
 }
 
 .hero-background-image {
