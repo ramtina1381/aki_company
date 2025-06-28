@@ -13,9 +13,10 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   width: 100%;
-  max-width: 100%;
   overflow-x: hidden; /* Prevent horizontal scrolling */
   position: relative;
+  margin: 0 auto;
+  padding: 0;
 }
 
 /* Responsive Typography */
@@ -108,6 +109,7 @@ button[type="submit"] {
   padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 3vw, 2rem);
 }
 
+
 /* Accessibility Improvements */
 a, button {
   transition: var(--transition);
@@ -124,36 +126,48 @@ button:focus-visible {
   color: var(--text);
   line-height: 1.6;
   max-width: auto;
+  padding: 0;
 }
 
 /* Hero Section Styling */
+/* Fix the hero container */
 .hero {
   position: relative;
-  height: clamp(400px, 60vh, 800px);
-  width: 100%;
-  margin-left: 0;  
-  height: 60vh;
+  height: 60vh; /* Remove the duplicate height declaration */
+  width: 100vw; /* Use viewport width instead of 100% */
+  margin: 0;
+  left: 0;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   text-align: center;
+  overflow: hidden; /* Prevent any potential overflow */
 }
 
+/* Fix the background image */
 .hero-background-image {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* UNCOMMENT THIS - it's crucial */
   z-index: 1;
   will-change: transform;
   transition: transform 0.3s ease;
-  
-  /* Prevent pixelation */
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
+}
+
+/* Ensure no parent containers are constraining the hero */
+.home-container {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
 }
 /* Adjust when zoomed */
 @media (max-width: 768px) and (orientation: portrait) {
@@ -174,7 +188,7 @@ button:focus-visible {
 .hero-content {
   position: relative;
   z-index: 3;
-  max-width: 700px;
+  max-width: 800px;
   padding: 2rem;
   font-size: clamp(1.5rem, 6vw, 3.5rem); /* Scales between 1.5rem and 3.5rem */
   margin-bottom: clamp(0.5rem, 2vw, 1rem);
