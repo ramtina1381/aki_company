@@ -29,8 +29,8 @@ const Footer = () => {
 
           <div className="footer-contact">
             <h4>Connect</h4>
-            <p>info@akibatterymaterials.com</p>
-            <p>Ontario, Canada</p>
+            <p>info@akirecycling.com</p>
+            <p>Southern Ontario, Canada</p>
           </div>
         </div>
 
