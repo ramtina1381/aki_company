@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
+  padding: 5px 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 100vw;
@@ -17,7 +17,7 @@
 .logo {
   display: flex;
   align-items: center;
-  font-size: 22px;
+  font-size: 15px;
   font-weight: bold;
   color: #496D89;
   flex: 0 0 auto;
@@ -25,25 +25,27 @@
 }
 
 .logo img {
-  height: 60px;
+  height: 10px;
   margin-right: 10px;
-  width: clamp(100px, 15vw, 180px); /* Responsive sizing */
+  /* width: clamp(100px, 15vw, 180px); Responsive sizing */
+  width: auto;
+  max-width: 120px;
   height: auto;
   transition: transform 0.3s ease;
 }
 
 .nav {
   display: flex;
-  gap: 20px;
+  gap: 15px;
 }
 
 .nav-link {
   text-decoration: none;
   color: #496D89;
-  font-size: 18px;
+  font-size: 34px;
   font-weight: 500;
   transition: color 0.2s ease;
-  font-size: clamp(0.9rem, 1.1vw, 1.1rem);
+  font-size: clamp(1rem, 1.5vw, 1.5rem); /* Increased size range */
 
 }
 
