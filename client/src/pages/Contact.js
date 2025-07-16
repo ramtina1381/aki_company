@@ -1,7 +1,7 @@
 import React from "react";
 import "./Pages.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faXTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faFacebookF, faXTwitter, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 
 export default function Contact() {
   const baseUrl = process.env.REACT_APP_API_BASE_URL;
@@ -54,16 +54,12 @@ export default function Contact() {
       <div className="contact-container">
         <div className="contact-info">
           <h1>Contact Us</h1>
-          <p>Have questions about our battery recycling services? Get in touch!</p>
+          <p>Let’s build a cleaner future together. Whether you're an OEM, recycler, or community member—send us a message and we'll connect.</p>
 
           <div className="contact-details">
             <div className="contact-item">
               <span className="contact-icon">✉️</span>
               <span>info@akirecycling.com</span>
-            </div>
-            <div className="contact-item">
-              <span className="contact-icon">📞</span>
-              <span>+1 (555) 123-4567</span>
             </div>
             <div className="contact-item">
               <span className="contact-icon">📍</span>
@@ -88,6 +84,14 @@ export default function Contact() {
             >
               <FontAwesomeIcon icon={faXTwitter} className="social-icon" />
             </a>
+              <a
+                href="https://www.linkedin.com/company/akirecycle/?viewAsMember=true "
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+              >
+                <FontAwesomeIcon icon={faLinkedinIn} className="social-icon" />
+              </a>
           </div>
         </div>
 

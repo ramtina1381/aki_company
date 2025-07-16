@@ -36,35 +36,35 @@ const Home = () => {
     </section>
       {/* Process Flow */}
 {/* Process Flow */}
-<section className="process-section">
+<section className="process-section-home">
   <h2>How We Close the Loop</h2>
-  <div className="process-steps">
-    <div className="step">
-      <div className="step-number">1</div>
+  <div className="process-steps-home">
+    <div className="step-home">
+      <div className="step-number-home">1</div>
       <h3>Collection</h3>
       <p>Sourcing end-of-life batteries from Ontario manufacturers</p>
     </div>
     
-    <div className="step-connector">
-      <svg className="step-icon" viewBox="0 0 24 24">
+    <div className="step-connector-home">
+      <svg className="step-icon-home" viewBox="0 0 24 24">
         <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
       </svg>
     </div>
     
-    <div className="step">
-      <div className="step-number">2</div>
+    <div className="step-home">
+      <div className="step-number-home">2</div>
       <h3>Black Mass Production</h3>
       <p>Mechanical processing at our Southern Ontario facility</p>
     </div>
     
-    <div className="step-connector">
-      <svg className="step-icon" viewBox="0 0 24 24">
+    <div className="step-connector-home">
+      <svg className="step-icon-home" viewBox="0 0 24 24">
         <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
       </svg>
     </div>
     
-    <div className="step">
-      <div className="step-number">3</div>
+    <div className="step-home">
+      <div className="step-number-home">3</div>
       <h3>Hydrometallurgical Refining</h3>
       <p>Recovering lithium, nickel, cobalt, and other critical minerals</p>
     </div>

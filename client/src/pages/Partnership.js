@@ -77,28 +77,28 @@ export default function Partnership() {
           </div>
 
           <div className="form-group">
-            <label>Organization Name*</label>
-            <input type="text" name="organization" required />
+            <label>Organization Name</label>
+            <input type="text" name="organization" />
           </div>
 
           <div className="form-group">
             <label>Industry</label>
             <select name="industry">
-              <option>Manufacturer</option>
-              <option>Retailer</option>
-              <option>Municipality</option>
-              <option>School</option>
+              <option>Battery Manufacturer</option>
+              <option>Automotive OEM</option>
+              <option>Vehicle Dismantler / Recycler</option>
+              <option>Automotive Dealer / Service Centre</option>
+              <option>Retailer / Electronics Store</option>
+              <option>Municipality / Public Works</option>
+              <option>School / Academic Institution</option>
+              <option>Logistics or Waste Transport Provider</option>
+              <option>Recycling Company / Processor</option>
               <option>Other</option>
             </select>
           </div>
 
           <div className="form-group">
-            <label>Website</label>
-            <input type="url" name="website" />
-          </div>
-
-          <div className="form-group">
-            <label>Business Address</label>
+            <label>Location</label>
             <input type="text" name="address" />
           </div>
 
@@ -114,26 +114,11 @@ export default function Partnership() {
           </div>
 
           <div className="form-group">
-            <label>Estimated Monthly Battery Waste</label>
-            <select name="volume">
-              <option>&lt;10kg</option>
-              <option>10-50kg</option>
-              <option>50-100kg</option>
-              <option>100kg+</option>
-            </select>
-          </div>
-
-          <div className="form-group">
-            <label>Your Sustainability Goals</label>
-            <textarea name="goals" rows="4" />
-          </div>
-
-          <div className="form-group">
-            <label>Additional Message</label>
+            <label>Message</label>
             <textarea name="message" rows="4" />
           </div>
 
-          <button type="submit">Submit Partnership Request</button>
+          <button type="submit">Submit Request</button>
         </form>
       </div>
 
