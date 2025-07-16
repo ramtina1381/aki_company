@@ -10,7 +10,7 @@ const Home = () => {
       <div className="hero-content">
         <h1>Closing the Loop on Battery Materials</h1>
         <p className="hero-subtitle">
-          First Nations-led lithium-ion battery recycling. Sustainable. Strategic. Indigenous-owned.
+          <strong>First Nations-led lithium-ion battery recycling. Sustainable. Strategic. Indigenous-owned.</strong>
         </p>
       </div>
       <div className="hero-overlay"></div>
