@@ -134,7 +134,7 @@ button:focus-visible {
 .hero {
   position: relative;
   width: 100%;
-  height: 90vh;
+  height: 150px;
   min-height: 600px;
   margin: 0;
   padding: 0;
@@ -144,32 +144,53 @@ button:focus-visible {
   color: white;
   text-align: center;
   overflow: hidden;
-  background-image: url('assets/production.jpg');
+  background-image: url('http://localhost:3000/assets/production2.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Dark overlay */
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+}
 
 /* Background image solution */
-.hero::before {
+/* .hero::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('assets/production.jpg');
-  background-size: 100% 100%;
+  background-image: url('http://localhost:3000/assets/production2.jpg');
+  background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   z-index: -1;
-  
+   */
   /* Fix for ultra-wide screens */
   @media (min-width: 2000px) {
-    background-size: 100% auto;
-    background-position: center top;
+    /* background-size: 100% auto;
+    background-position: center top; */
+    .hero::before{
+      background-size: cover;
+      background-position: center center;
+    }
   }
-}
+
 
 .hero-content {
   position: relative;
@@ -177,6 +198,7 @@ button:focus-visible {
   max-width: 1200px;
   width: 90%;
   padding: 20px;
+  color: var(--primary);
 }
 
 .hero-content h1 {
@@ -191,7 +213,7 @@ button:focus-visible {
   font-size: clamp(1rem, 2.5vw, 1.8rem);
   margin-bottom: 2rem;
   line-height: 1.4;
-  color: black;
+  color: var(--light-bg);
 }
 
 /* For zoomed-out views */
@@ -321,14 +343,16 @@ button:focus-visible {
 }
 
 .step-home {
-  flex: 1;
-  min-width: 0;
-  flex: 1 1 250px; /* or 200px */
+  height: 320px;  
+  max-width: 300px;
+  box-sizing: border-box;
   padding: 2rem;
   background: white;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
 }
+
 
 .step-connector-home {
   padding: 0 1rem;
@@ -474,14 +498,14 @@ button:focus-visible {
   border: 1px solid #798F86;
   border-radius: 16px;
   padding: 20px;
-  width: 290px;
+  width: 380px;
   text-align: center;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .team-photo {
   width: 100%;
-  height: 220px;
+  height: 320px;
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 15px;
@@ -542,6 +566,7 @@ button:focus-visible {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
   margin-top: 2rem;
+  grid-auto-flow: 1fr;
 }
 
 .process-step {
@@ -551,7 +576,6 @@ button:focus-visible {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100%;
   min-height: 280px;
   transition: transform 0.3s;

@@ -10,7 +10,7 @@ const Home = () => {
       <div className="hero-content">
         <h1>Closing the Loop on Battery Materials</h1>
         <p className="hero-subtitle">
-          <strong>First Nations-led lithium-ion battery recycling. Sustainable. Strategic. Indigenous-owned.</strong>
+          First Nations-led lithium-ion battery recycling. Sustainable. Strategic. Indigenous-owned.
         </p>
       </div>
       <div className="hero-overlay"></div>
@@ -42,7 +42,7 @@ const Home = () => {
     <div className="step-home">
       <div className="step-number-home">1</div>
       <h3>Collection</h3>
-      <p>Sourcing end-of-life batteries from Ontario manufacturers</p>
+      <p>Sourcing battery waste materials in Ontario</p>
     </div>
     
     <div className="step-connector-home">
@@ -53,7 +53,7 @@ const Home = () => {
     
     <div className="step-home">
       <div className="step-number-home">2</div>
-      <h3>Black Mass Production</h3>
+      <h3>Pre-processing</h3>
       <p>Mechanical processing at our Southern Ontario facility</p>
     </div>
     
@@ -65,8 +65,8 @@ const Home = () => {
     
     <div className="step-home">
       <div className="step-number-home">3</div>
-      <h3>Hydrometallurgical Refining</h3>
-      <p>Recovering lithium, nickel, cobalt, and other critical minerals</p>
+      <h3>Processing</h3>
+      <p>Hydrometallurgical refining is carried out at our partner’s facility in Northeastern Ontario</p>
     </div>
   </div>
 </section>

@@ -4,7 +4,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #3B3838;
+  /* color: #3B3838; */
 }
 
 body {
@@ -21,8 +21,6 @@ body {
 .main-content {
   flex: 1;
   padding: 2rem;
-  max-width: 1500px;
-  margin: 0 auto;
   padding: 0;
   background-color: transparent; /* Ensure content area doesn't have bg color */
 }

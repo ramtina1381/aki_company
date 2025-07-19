@@ -20,10 +20,10 @@ const About = () => {
                 Aki Battery Recycling is a joint venture between the Three Fires Group and Electra Battery Materials Corporation, created to establish Ontario’s <strong>first First Nations-led lithium-ion battery recycling company</strong>. Through this partnership, Aki is advancing Indigenous leadership in the clean energy transition while strengthening Canada’s critical minerals supply chain.            
             </p>
             <p className="mission-text">
-                At the heart of Aki’s operations is a state-of-the-art pre-processing facility designed to handle end-of-life lithium-ion batteries and manufacturing scrap. Batteries are carefully dismantled into component parts—recovering high-grade copper, aluminum, and steel. The remaining materials undergo a shredding process to produce <strong>black mass</strong>, a valuable intermediate product rich in critical minerals such as lithium, nickel, cobalt, manganese, and graphite.
+                At the heart of Aki’s operations is a state-of-the-art pre-processing facility designed to handle end-of-life lithium-ion batteries and manufacturing scrap. Batteries are carefully dismantled into component parts—recovering high-grade copper, aluminum, and steel. The remaining materials are shredded to recover copper and aluminum, and to produce <strong>black mass</strong>, a valuable intermediate product rich in critical minerals such as lithium, nickel, cobalt, manganese, and graphite.
             </p>
             <p className='mission-text'>
-              This black mass will be further refined at Electra’s hydrometallurgical facility north of Toronto, enabling the recovery of these critical minerals for reuse in new batteries. Together, Aki and Electra are building a <strong>localized, circular supply chain</strong> for battery materials—one that prioritizes sustainability, economic inclusion, and energy security.
+              This black mass will be further refined at Electra’s hydrometallurgical facility in Northeastern Ontario, enabling the recovery of these critical minerals for reuse in new batteries. Together, Aki and Electra are building a <strong>localized, circular supply chain</strong> for battery materials—one that prioritizes sustainability, economic inclusion, and energy security.
             </p>
           </div>
         </div>
@@ -41,17 +41,17 @@ const About = () => {
             <div className="process-step step-1">
               <div className="step-number">1</div>
               <h3>Battery Collection & Dismantling</h3>
-              <p>We source end-of-life batteries and manufacturing scrap from across Ontario. Modules are safely dismantled, recovering valuable metals such as copper, aluminum, and steel.</p>
+              <p> We source battery manufacturing scrap from producers and end-of-life batteries from consumers across Ontario. Dismantling is performed safely to recover valuable metals including copper wiring, aluminum, and steel.</p>
             </div>
             <div className="process-step step-2">
               <div className="step-number">2</div>
               <h3>Shredding & Black Mass Production</h3>
-              <p>Remaining materials are shredded into black mass — a concentrated intermediate product rich in lithium, nickel, cobalt, manganese, and graphite.</p>
+              <p>At our Southern Ontario facility, materials undergo mechanical processing to recover copper and aluminum materials, while producing black mass.</p>
             </div>
             <div className="process-step step-3">
               <div className="step-number">3</div>
               <h3>Critical Mineral Recovery </h3>
-              <p>The black mass is transported to Electra’s hydrometallurgical facility, where advanced refining technologies recover key minerals for reuse in battery manufacturing.</p>
+              <p>This black mass is then refined at our Partner’s hydrometallurgical facility to recover lithium, nickel, cobalt, manganese and other key critical minerals for reuse in battery manufacturing.</p>
             </div>
           </div>
         </div>
@@ -95,8 +95,7 @@ const About = () => {
               <div className="team-member-card">
                 <img src="assets/team/Andre Marais.jpeg" alt="Lisa Moore" className="team-photo" />
                 <h4>Andre Marais</h4>
-                <p>Director</p>
-                <p>Strategy and Corporate Development</p>
+                <p>Director, Strategy and Corporate Development</p>
               </div>
             </div>
           </div>
