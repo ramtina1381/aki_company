@@ -144,7 +144,7 @@ button:focus-visible {
   color: white;
   text-align: center;
   overflow: hidden;
-  background-image: url('/assets/production2.jpg');
+  background-image: url('assets/production2.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
