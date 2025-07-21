@@ -6,7 +6,6 @@ const Home = () => {
     <div className="home-container">
       {/* Hero Section */}
     <section className="hero">
-      {/* Content */}
       <div className="hero-content">
         <h1>Closing the Loop on Battery Materials</h1>
         <p className="hero-subtitle">
