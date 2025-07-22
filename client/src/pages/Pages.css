@@ -255,7 +255,7 @@ button:focus-visible {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 2rem auto;
 }
 
@@ -285,7 +285,7 @@ button:focus-visible {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 4px;
+  height: 8px;
   background: var(--edge-color, #496D89);
 }
 
@@ -404,7 +404,7 @@ button:focus-visible {
 /* Shared Hero Styles */
 .centered-heading-container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1400px;
   padding: 20px;
   align-items: center;
   justify-content: center;
@@ -423,7 +423,7 @@ button:focus-visible {
 
 /* Section Styling */
 .section-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 4rem 2rem;
 }
@@ -550,7 +550,7 @@ button:focus-visible {
 /* Our process Style for About page */
 .process-steps {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 1.5rem;
   margin-top: 2rem;
   grid-auto-flow: 1fr;

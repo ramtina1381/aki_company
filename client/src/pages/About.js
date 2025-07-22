@@ -4,16 +4,11 @@ import './Pages.css';
 const About = () => {
   return (
     <div className="about-container">
-
-
-      
-    
-
       {/* Mission Section */}
       <section className="mission-section">
         <div className="section-container">
-                  <div className="centered-heading-container">
-          <h1>About Us</h1>
+          <div className="centered-heading-container">
+            <h1>About Us</h1>
         </div>
           <h2 className="section-title">Our Mission</h2>
           <div className="mission-content">
