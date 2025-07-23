@@ -14,7 +14,6 @@ const Footer = () => {
             <h4>Company</h4>
             <ul>
               <li><a href="/about">About Us</a></li>
-              <li><a href="/careers">Careers</a></li>
               <li><a href="/contact">Contact</a></li>
             </ul>
           </div>
@@ -29,7 +28,7 @@ const Footer = () => {
 
           <div className="footer-contact">
             <h4>Connect</h4>
-            <p>info@akirecycling.com</p>
+            <p><a href="mailto:info@akirecycling.com">info@akirecycling.com</a></p>
             <p>Southern Ontario, Canada</p>
           </div>
         </div>
