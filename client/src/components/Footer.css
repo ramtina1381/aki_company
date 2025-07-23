@@ -54,7 +54,19 @@
   line-height: 1.4;
   word-break: break-word;
 }
+.footer-contact a {
+  margin: 0.25rem 0;
+  color: #3B3838;
+  line-height: 1.4;
+  word-break: break-word;
+}
+.footer-contact a:hover {
+  margin: 0.25rem 0;
+  line-height: 1.4;
+  word-break: break-word;
+  color: #A6645D;
 
+}
 .footer-bottom {
   text-align: center;
   padding-top: 1rem;
