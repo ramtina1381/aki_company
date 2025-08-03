@@ -1,92 +1,101 @@
 const express = require("express");
-const cors = require("cors");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
+const cors = require("cors");
 
 const app = express();
-const PORT = process.env.PORT || 5001;
 
-// 1. Updated CORS Configuration
 const allowedOrigins = [
   "http://localhost:3000",
   "https://aki-company.vercel.app",
-  "https://aki-company-nnvv.vercel.app",
-  "https://aki-company-*.vercel.app"
+  "https://aki-company-nnvv.vercel.app"
 ];
 
+// Middleware to parse JSON bodies
+app.use(express.json());
+
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.some(allowed => origin.match(new RegExp(allowed.replace('*', '.*'))))) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: allowedOrigins,
   methods: ["GET", "POST", "OPTIONS"],
-  allowedHeaders: ["Content-Type"],
-  credentials: false
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
-app.use(express.json());
 
-// 2. Explicit OPTIONS handler for preflight requests
-app.options("*", cors(corsOptions));
-
-// 3. Health Check Endpoint
+// Test endpoint to verify server is working
 app.get("/api/health", (req, res) => {
   res.json({ status: "OK", message: "Server is running" });
 });
 
-// 4. Contact Endpoint (updated)
+app.get('/', (req, res) => {
+  res.send('Server is up and running!');
+});
+
+// Contact endpoint
 app.post("/api/contact", async (req, res) => {
-  try {
-    const { name, email, subject, message } = req.body;
+  console.log("Contact request received:", req.body);
 
-    if (!name || !email || !subject || !message) {
-      return res.status(400).json({ error: "All fields are required" });
-    }
+  const { name, email, subject, message } = req.body;
 
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.sendgrid.net',
-      port: 587,
-      auth: {
-        user: 'apikey',
-        pass: process.env.SENDGRID_API_KEY
-      }
+  // Validate all required fields
+  if (!name || !email || !subject || !message) {
+    console.log("Missing required field(s)");
+    return res.status(400).json({ 
+      error: "All fields are required",
+      received: { name, email, subject, message }
     });
+  }
 
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
-      replyTo: email,
-      subject: `New Contact: ${subject}`,
-      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
-      html: `
-        <h3>New Contact Form Submission</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
-      `
-    };
+  // Email configuration
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.sendgrid.net',
+    port: 465,
+    secure: true,
+    auth: {
+      user: 'apikey',
+      pass: process.env.SENDGRID_API_KEY
+    }
+  });
 
+  transporter.verify(function(error, success) {
+    if (error) {
+      console.log('SMTP connection error:', error);
+    } else {
+      console.log('Server is ready to take our messages');
+    }
+  });
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER, // Use your email as sender
+    to: process.env.EMAIL_USER,   // Send to yourself
+    replyTo: email,              // Allow reply to sender
+    subject: `New Contact: ${subject}`,
+    text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+    html: `
+      <h3>New Contact Form Submission</h3>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Subject:</strong> ${subject}</p>
+      <p><strong>Message:</strong></p>
+      <p>${message.replace(/\n/g, '<br>')}</p>
+    `
+  };
+
+  try {
     await transporter.sendMail(mailOptions);
-    res.json({ success: true, message: "Email sent successfully!" });
+    console.log("Email sent successfully");
+    res.status(200).json({ success: true, message: "Email sent successfully!" });
   } catch (error) {
-    console.error("Error:", error);
-    res.status(500).json({ error: "Failed to send email" });
+    console.error("Email send error:", error);
+    res.status(500).json({ 
+      success: false, 
+      message: "Failed to send email",
+      error: error.message 
+    });
   }
 });
 
-// 5. Catch-all route
-app.get("*", (req, res) => {
-  res.status(404).json({ error: "Not Found" });
-});
-
-// 6. Export for Vercel
-module.exports = app;
 
 // Partnership Inquiry
 app.post("/api/partnership", async (req, res) => {
@@ -112,15 +121,6 @@ Sustainability Goals: ${goals}
 Message: ${message}
 `;
 
-// const transporter = nodemailer.createTransport({
-//   host: 'smtp.sendgrid.net',
-//   port: 587,
-//   auth: {
-//     user: 'apikey', // Literally this string
-//     pass: process.env.SENDGRID_API_KEY
-//   }
-// });
-
   const mailOptions = {
     from: process.env.EMAIL_USER || 'noreply@yourdomain.com',
     to: process.env.EMAIL_USER,
@@ -144,31 +144,16 @@ Message: ${message}
     `
   };
 
-// const mailOptions = {
-//   from: process.env.EMAIL_USER,   
-//   to: process.env.EMAIL_USER,       
-//   subject: `AKI Partnership Inquiry: ${organization}`,
-//   text: formattedMessage,
-//   replyTo: email                   
-// };
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.sendgrid.net',
+    port: 587,
+    auth: {
+      user: 'apikey',
+      pass: process.env.SENDGRID_API_KEY
+    }
+  });
 
-  // try {
-  //   await transporter.sendMail(mailOptions);
-  //   res.status(200).json({ message: "Partnership form submitted successfully!" });
-  // } catch (err) {
-  //   console.error("Email send error:", err);
-  //   res.status(500).json({ message: "Failed to submit form." });
-  // }
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.sendgrid.net',
-      port: 587,
-      auth: {
-        user: 'apikey',
-        pass: process.env.SENDGRID_API_KEY
-      }
-    });
-
-    try {
+  try {
     await transporter.sendMail(mailOptions);
     console.log("Partnership email sent to:", mailOptions.to);
     res.status(200).json({ message: "Partnership form submitted successfully!" });
@@ -188,12 +173,5 @@ Message: ${message}
   }
 });
 
-
-
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-  console.log("Available endpoints:");
-  console.log(`- GET  http://localhost:${PORT}/api/health`);
-  console.log(`- POST http://localhost:${PORT}/api/contact`);
-});
+// IMPORTANT: Export the app for Vercel
+module.exports = app;
