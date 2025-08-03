@@ -31,14 +31,6 @@ app.get('/', (req, res) => {
   res.send('Server is up and running!');
 });
 
-const path = require('path');
-// Serve static React files
-app.use(express.static(path.join(__dirname, 'build')));
-
-// Fallback to index.html for any other GET request
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
 // Contact endpoint
 app.post("/api/contact", async (req, res) => {
   console.log("Contact request received:", req.body);
