@@ -7,9 +7,7 @@ const PORT = 5001;
 const allowedOrigins = [
   "http://localhost:3000",
   "https://aki-company.vercel.app",
-  "https://aki-company-nnvv.vercel.app", // Add your backend domain too
-  "https://aki-company-git-main-akibzaman.vercel.app", // Common Vercel preview URL pattern
-  "https://aki-company-*.vercel.app"// Replace with actual domain
+  "https://aki-company-nnvv.vercel.app"
 ];
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -32,10 +30,6 @@ app.get("/api/health", (req, res) => {
 app.get('/', (req, res) => {
   res.send('Server is up and running!');
 });
-// Contact endpoint
-app.post("/api/contact", async (req, res) => {
-  console.log("Contact request received:", req.body);
-
 
 const path = require('path');
 // Serve static React files
@@ -45,6 +39,9 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
+// Contact endpoint
+app.post("/api/contact", async (req, res) => {
+  console.log("Contact request received:", req.body);
 
   const { name, email, subject, message } = req.body;
 
