@@ -22,11 +22,8 @@ export default function Partnership() {
       phone: e.target.phone.value,
       organization: e.target.organization.value,
       industry: e.target.industry.value,
-      website: e.target.website.value,
       address: e.target.address.value,
       partnershipType: e.target.partnershipType.value,
-      volume: e.target.volume.value,
-      goals: e.target.goals.value,
       message: e.target.message.value,
     };
 
