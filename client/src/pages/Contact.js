@@ -32,10 +32,8 @@ export default function Contact() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
-        mode: "cors",
-        credentials: "include",
-      });
+        body: JSON.stringify(formData)
+            });
 
       if (response.ok) {
         showModal();
