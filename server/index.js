@@ -1,99 +1,92 @@
 const express = require("express");
+const cors = require("cors");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
 const app = express();
-const PORT = 5001;
+const PORT = process.env.PORT || 5001;
+
+// 1. Updated CORS Configuration
 const allowedOrigins = [
   "http://localhost:3000",
   "https://aki-company.vercel.app",
-  "https://aki-company-nnvv.vercel.app"
+  "https://aki-company-nnvv.vercel.app",
+  "https://aki-company-*.vercel.app"
 ];
-// Middleware to parse JSON bodies
-app.use(express.json());
-const cors = require("cors");
 
 const corsOptions = {
-  origin: allowedOrigins,
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.some(allowed => origin.match(new RegExp(allowed.replace('*', '.*'))))) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ["GET", "POST", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true,
+  allowedHeaders: ["Content-Type"],
+  credentials: false
 };
 
 app.use(cors(corsOptions));
+app.use(express.json());
 
-// Test endpoint to verify server is working
+// 2. Explicit OPTIONS handler for preflight requests
+app.options("*", cors(corsOptions));
+
+// 3. Health Check Endpoint
 app.get("/api/health", (req, res) => {
   res.json({ status: "OK", message: "Server is running" });
 });
 
-app.get('/', (req, res) => {
-  res.send('Server is up and running!');
-});
-
-// Contact endpoint
+// 4. Contact Endpoint (updated)
 app.post("/api/contact", async (req, res) => {
-  console.log("Contact request received:", req.body);
-
-  const { name, email, subject, message } = req.body;
-
-  // Validate all required fields
-  if (!name || !email || !subject || !message) {
-    console.log("Missing required field(s)");
-    return res.status(400).json({ 
-      error: "All fields are required",
-      received: { name, email, subject, message }
-    });
-  }
-
-  // Email configuration
-const transporter = nodemailer.createTransport({
-  host: 'smtp.sendgrid.net',
-  port: 465,
-  secure: true,
-  auth: {
-    user: 'apikey',
-    pass: process.env.SENDGRID_API_KEY
-  }
-});
-transporter.verify(function(error, success) {
-  if (error) {
-    console.log('SMTP connection error:', error);
-  } else {
-    console.log('Server is ready to take our messages');
-  }
-});
-
-  const mailOptions = {
-    from: process.env.EMAIL_USER, // Use your email as sender
-    to: process.env.EMAIL_USER,   // Send to yourself
-    replyTo: email,              // Allow reply to sender
-    subject: `New Contact: ${subject}`,
-    text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
-    html: `
-      <h3>New Contact Form Submission</h3>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Subject:</strong> ${subject}</p>
-      <p><strong>Message:</strong></p>
-      <p>${message.replace(/\n/g, '<br>')}</p>
-    `
-  };
-
   try {
-    await transporter.sendMail(mailOptions);
-    console.log("Email sent successfully");
-    res.status(200).json({ success: true, message: "Email sent successfully!" });
-  } catch (error) {
-    console.error("Email send error:", error);
-    res.status(500).json({ 
-      success: false, 
-      message: "Failed to send email",
-      error: error.message 
+    const { name, email, subject, message } = req.body;
+
+    if (!name || !email || !subject || !message) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.sendgrid.net',
+      port: 587,
+      auth: {
+        user: 'apikey',
+        pass: process.env.SENDGRID_API_KEY
+      }
     });
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER,
+      replyTo: email,
+      subject: `New Contact: ${subject}`,
+      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+      html: `
+        <h3>New Contact Form Submission</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Subject:</strong> ${subject}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message.replace(/\n/g, '<br>')}</p>
+      `
+    };
+
+    await transporter.sendMail(mailOptions);
+    res.json({ success: true, message: "Email sent successfully!" });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Failed to send email" });
   }
 });
 
+// 5. Catch-all route
+app.get("*", (req, res) => {
+  res.status(404).json({ error: "Not Found" });
+});
+
+// 6. Export for Vercel
+module.exports = app;
 
 // Partnership Inquiry
 app.post("/api/partnership", async (req, res) => {

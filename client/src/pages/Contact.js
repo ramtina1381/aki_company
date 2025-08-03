@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faXTwitter, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 
 export default function Contact() {
-  const baseUrl = process.env.REACT_APP_API_BASE_URL;
+  // const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
   const showModal = () => {
     const modal = document.getElementById("thankYouModal");
@@ -16,36 +16,38 @@ export default function Contact() {
     if (modal) modal.style.display = "none";
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    const formData = {
-      name: e.target.name.value,
-      email: e.target.email.value,
-      subject: e.target.subject.value,
-      message: e.target.message.value,
-    };
-
-    try {
-      const response = await fetch(`${baseUrl}/api/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData)
-            });
-
-      if (response.ok) {
-        showModal();
-        e.target.reset();
-      } else {
-        alert("Something went wrong. Please try again later.");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("An error occurred. Please try again.");
-    }
+  const formData = {
+    name: e.target.name.value,
+    email: e.target.email.value,
+    subject: e.target.subject.value,
+    message: e.target.message.value,
   };
+
+  try {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/contact`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+    
+    if (!response.ok) {
+      throw new Error(data.error || "Something went wrong");
+    }
+
+    showModal();
+    e.target.reset();
+  } catch (error) {
+    console.error("Error:", error);
+    alert(error.message || "An error occurred. Please try again.");
+  }
+};
 
   return (
     <section className="contact-section">
