@@ -122,7 +122,7 @@ Message: ${message}
 `;
 
   const mailOptions = {
-    from: process.env.EMAIL_USER || 'noreply@yourdomain.com',
+    from: process.env.EMAIL_USER,
     to: process.env.EMAIL_USER,
     subject: `AKI Partnership Inquiry: ${organization}`,
     text: formattedMessage,
@@ -137,8 +137,6 @@ Message: ${message}
       <p><strong>Website:</strong> ${website}</p>
       <p><strong>Address:</strong> ${address}</p>
       <p><strong>Partnership Type:</strong> ${partnershipType}</p>
-      <p><strong>Battery Volume:</strong> ${volume}</p>
-      <p><strong>Sustainability Goals:</strong> ${goals}</p>
       <p><strong>Message:</strong> ${message}</p>
       <p>${message.replace(/\n/g, '<br>')}</p>
     `
