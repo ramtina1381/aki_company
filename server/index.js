@@ -3,8 +3,7 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 
 const app = express();
-const PORT = process.env.PORT || 5001;
-
+const PORT = 5001;
 const allowedOrigins = [
   "http://localhost:3000",
   "https://aki-company.vercel.app",
@@ -15,7 +14,6 @@ const allowedOrigins = [
 // Middleware to parse JSON bodies
 app.use(express.json());
 const cors = require("cors");
-
 
 const corsOptions = {
   origin: allowedOrigins,
@@ -192,16 +190,8 @@ Message: ${message}
 
 // Start server
 app.listen(PORT, () => {
-  const host = process.env.HOST || "localhost";
-  const actualPort = process.env.PORT || PORT;
-
-  const baseUrl = process.env.RAILWAY_PUBLIC_DOMAIN
-    ? `https://${process.env.RAILWAY_PUBLIC_DOMAIN}`
-    : `http://${host}:${actualPort}`;
-
-  console.log(`\n🚀 Server running at: ${baseUrl}`);
-  console.log("📡 Available endpoints:");
-  console.log(`- GET  ${baseUrl}/api/health`);
-  console.log(`- POST ${baseUrl}/api/contact`);
-  console.log(`- POST ${baseUrl}/api/partnership`);
+  console.log(`Server running on http://localhost:${PORT}`);
+  console.log("Available endpoints:");
+  console.log(`- GET  http://localhost:${PORT}/api/health`);
+  console.log(`- POST http://localhost:${PORT}/api/contact`);
 });
