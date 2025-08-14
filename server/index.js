@@ -102,7 +102,7 @@ app.post("/api/contact", async (req, res) => {
 app.post("/api/partnership", async (req, res) => {
   const { fullName, email, phone, organization, industry, website, address, partnershipType, volume, goals, message } = req.body;
 
-  if (!fullName || !email || !organization) {
+  if (!fullName || !email) {
     return res.status(400).json({ message: "Please fill in all required fields." });
   }
 
@@ -111,15 +111,15 @@ New Partnership Inquiry from AKI Website:
 
 Name: ${fullName}
 Email: ${email}
-Phone: ${phone}
-Organization: ${organization}
-Industry: ${industry}
-Website: ${website}
-Address: ${address}
-Partnership Type: ${partnershipType}
-Battery Volume: ${volume}
-Sustainability Goals: ${goals}
-Message: ${message}
+Phone: ${phone || "N/A"}
+Organization: ${organization || "N/A"}
+Industry: ${industry || "N/A"}
+Website: ${website || "N/A"}
+Address: ${address || "N/A"}
+Partnership Type: ${partnershipType || "N/A"}
+Battery Volume: ${volume || "N/A"}
+Sustainability Goals: ${goals || "N/A"}
+Message: ${message || "N/A"}
 `;
 
   const mailOptions = {
@@ -132,14 +132,15 @@ Message: ${message}
       <h3>New Contact Form Submission</h3>
       <p><strong>Name:</strong> ${fullName}</p>
       <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Phone:</strong> ${phone}</p>
-      <p><strong>Organization:</strong> ${organization}</p>
-      <p><strong>Industry:</strong> ${industry}</p>
-      <p><strong>Website:</strong> ${website}</p>
-      <p><strong>Address:</strong> ${address}</p>
-      <p><strong>Partnership Type:</strong> ${partnershipType}</p>
-      <p><strong>Message:</strong> ${message}</p>
-      <p>${message.replace(/\n/g, '<br>')}</p>
+      <p><strong>Phone:</strong> ${phone || "N/A"}</p>
+      <p><strong>Organization:</strong> ${organization || "N/A"}</p>
+      <p><strong>Industry:</strong> ${industry || "N/A"}</p>
+      <p><strong>Website:</strong> ${website || "N/A"}</p>
+      <p><strong>Address:</strong> ${address || "N/A"}</p>
+      <p><strong>Partnership Type:</strong> ${partnershipType || "N/A"}</p>
+      <p><strong>Battery Volume:</strong> ${volume || "N/A"}</p>
+      <p><strong>Sustainability Goals:</strong> ${goals || "N/A"}</p>
+      <p><strong>Message:</strong> ${message || "N/A"}</p>
     `
   };
 
