@@ -16,16 +16,32 @@ export default function Partnership() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = {
-      fullName: e.target.fullName.value,
-      email: e.target.email.value,
-      phone: e.target.phone.value,
-      organization: e.target.organization.value,
-      industry: e.target.industry.value,
-      address: e.target.address.value,
-      partnershipType: e.target.partnershipType.value,
-      message: e.target.message.value,
-    };
+  const formData = {
+    fullName: e.target.fullName.value.trim(),
+    email: e.target.email.value.trim(),
+    phone: e.target.phone.value.trim(),
+    organization: e.target.organization.value.trim(),
+    industry: e.target.industry.value,
+    address: e.target.address.value.trim(),
+    partnershipType: e.target.partnershipType.value,
+    message: e.target.message.value.trim(),
+  };
+    // Client-side validation for required fields
+  let errors = [];
+  if (!formData.fullName) errors.push("Full Name is required.");
+  if (!formData.email) errors.push("Email is required.");
+  else {
+    // Basic email format check
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      errors.push("Please enter a valid email address.");
+    }
+  }
+
+  if (errors.length > 0) {
+    alert(errors.join("\n"));
+    return;
+  }
 
     try {
       const response = await fetch(`${baseUrl}/api/partnership`, {
